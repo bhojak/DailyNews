@@ -10,10 +10,12 @@ Android MVP pattern is a design approach that separates your programming logic f
 With this approach, the Activity or the Fragment  is the View and the Java/Kotlin class,  holding the logic is the Presenter.
 
 Android MVP By Example:
+
 I will use a list of class/files to demonstrate Android MVP pattern. 
 Here are the steps to display a list of classes using MVP.
 
 Step 1. Create the Contract: 
+
 The Contract is the glue that binds the participating components in MVP pattern together. 
 It is nothing but the good old Java interface that defines the responsibility of the Model, the View and the Presenter.
 we can create these three interfaces within one class file or as create three separate class files.
@@ -28,15 +30,18 @@ RepositoryInterface: This defines the methods that the concrete persistence clas
 This way the Presenter does not need to be concerned about how data is persisted.
 
 Step 2. Create Presenter class and Update Dagger Component: 
+
 Since the Presenter is a POJO/POKO class, the components that we need in this class such as the concrete implementation of the View, Repository, or Downloading data from server, etc has to be passed to us.
 We can either receive these components via the constructor or we can have them be injected using Dagger 2. We will use the later approach.
 Presenter does not need to know who the View is, and because of this, you can refine, refactor and test your Presenter logic independently. 
 When business requirements change, you just define more methods in the Contract and then have the respective classes to implement them.
 
 Step 3. Create Persistence Module:
+
  We need to let Dagger 2 know which concrete class will be used to satisfy the dependency on the Repository interface. This concrete class can use either in-memory data, SQLite, Realm Database, or new Architecture component Room. 
 
-Step 4.  Implement the View: 
+Step 4. Implement the View: 
+
 The View can be implemented in the Activity of the Fragment, however for a number of reasons including handling of configuration changes it is better to implement the View with Fragment. 
 
 What about the Adapter? – The adapter is a component of the View and should not directly participate in the MVP pattern. 
@@ -71,6 +76,7 @@ PostPresenter:
 Because one of the role of PostPresenter is to subscribe to API call events, we will have to add dependencies to RxJava and RxAndroid libraries in the build.gradle file of the module.
 
 What the PostPresenter will have to do is:
+
 Right after the view is created, call the JSONPlaceholder API to retrieve the Posts
 Right after the call is made, show the ProgressBar on the view When the API call ends, hide the loader If retrieving the posts from the API has been made without any problem, update the retrieved posts in the view If retrieving the posts from the API has failed, show the error in the view
 
