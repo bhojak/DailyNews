@@ -69,8 +69,10 @@ We will take the opportunity to also let ContextModule provide the Application i
 Injecting Retrofit:
 
 We just have to create a NetworkModule class in order to provide Retrofit services. No need to add any property to the class as the network dependencies can be instantiated from scratch.
-Presenter Component and Injection
+
+Presenter Component and Injection:
 In order to be able to inject the required dependencies to the PostPresenter, we will have to define a PresenterInjector interface in order to provide method to inject it.
+
 PostPresenter:
 
 Because one of the role of PostPresenter is to subscribe to API call events, we will have to add dependencies to RxJava and RxAndroid libraries in the build.gradle file of the module.
