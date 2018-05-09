@@ -20,13 +20,14 @@ The Contract is the glue that binds the participating components in MVP pattern 
 It is nothing but the good old Java interface that defines the responsibility of the Model, the View and the Presenter.
 we can create these three interfaces within one class file or as create three separate class files.
 
-ViewIterface:  this defines the methods that the concrete View aka Fragment or Activity will implement. 
+
+1. ViewIterface:  this defines the methods that the concrete View aka Fragment or Activity will implement. 
 This way you can proceed to create and test the Presenter without worrying about Android-specific components such as Context.
 
-ActionInterface:  this defines the methods that the concrete Presenter class will implement. 
+2. ActionInterface:  this defines the methods that the concrete Presenter class will implement. 
 Also known as user actions, this is where the business logic for the app is defined.
 
-RepositoryInterface: This defines the methods that the concrete persistence class will implement. 
+3. RepositoryInterface: This defines the methods that the concrete persistence class will implement. 
 This way the Presenter does not need to be concerned about how data is persisted.
 
 Step 2. Create Presenter class and Update Dagger Component: 
@@ -71,6 +72,7 @@ Injecting Retrofit:
 We just have to create a NetworkModule class in order to provide Retrofit services. No need to add any property to the class as the network dependencies can be instantiated from scratch.
 
 Presenter Component and Injection:
+
 In order to be able to inject the required dependencies to the PostPresenter, we will have to define a PresenterInjector interface in order to provide method to inject it.
 
 PostPresenter:
